@@ -18,7 +18,13 @@ public class Collision {
      * @return true se há colisão ou false, do contrário.
      */
     public static final boolean circlesOverlap(Circle c1, Circle c2) {
-        return false;
+        float r = (c1.radius+c2.radius)*(c1.radius+c2.radius),
+                d=(c1.x-c2.x)*(c1.x-c2.x)+(c1.y-c2.y)*(c1.y-c2.y);
+        if(r>d)
+            return true;
+        else
+            return false;
+       // }
     }
 
     /**
@@ -32,7 +38,14 @@ public class Collision {
     private static boolean rangesIntersect(
             float min1, float max1,
             float min2, float max2) {
-        return false;
+        if(min1>min2&&min1<max2)
+            return true;
+        if(max1>min2&&max1<max2)
+            return true;
+        //if(max2>min1&&max2<max1)
+          //  return true;
+        else
+            return false;
     }
 
     /**
@@ -44,7 +57,11 @@ public class Collision {
      * @return true se há colisão ou false, do contrário.
      */
     public static final boolean rectsOverlap(Rectangle r1, Rectangle r2) {
-        return false;
+        if(rangesIntersect(r1.x,r1.x+r1.width,r2.x,r2.x+r2.width)&&
+                rangesIntersect(r1.y,r1.y+r1.height,r2.y,r2.y+r2.height))
+            return true;
+        else
+            return false;
     }
 
 }
